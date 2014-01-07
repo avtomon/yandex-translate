@@ -7,6 +7,7 @@ This system is like Bing Translator or Google translate, but api is free for use
 The API offers text translation features for over 30 languages. 
 
 To begin using this class you need to get your own API key, you can do it just in pair of clicks.
+
 Firstly create a Yandex account - https://passport.yandex.com/passport
 
 Finally get your API key - http://api.yandex.ru/key/form.xml?service=trnsl

@@ -11,7 +11,7 @@ Firstly create a Yandex account - https://passport.yandex.com/passport
 Finally get your API key - http://api.yandex.ru/key/form.xml?service=trnsl
 
 Official api description and documentation in English - http://api.yandex.com/translate/
-                                           in russian - http://api.yandex.ru/translate/
+in russian - http://api.yandex.ru/translate/
 
 Example:
 

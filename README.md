@@ -16,6 +16,7 @@ in russian - http://api.yandex.ru/translate/
 
 Example:
 
+```
 include "YaTranslate.php";
 $key = 'YOUR_API_KEY';
 $tr = new YaTranslate($key);
@@ -28,3 +29,4 @@ $result = $tr->translate('Hello, how are you?','en-fr');        //Translate from
 
 $result = $tr->translate('Bonjour, comment allez-vous?','en');  //Detects language of the original text and translates in English
 var_dump($result);
+```

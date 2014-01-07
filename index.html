@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Yandex translate by S1NTEZ</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Yandex translate</h1>
+        <p>Php class for using Yandex translate system</p>
+
+        <p class="view"><a href="https://github.com/S1NTEZ/yandex_translate">View the Project on GitHub <small>S1NTEZ/yandex_translate</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/S1NTEZ/yandex_translate/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/S1NTEZ/yandex_translate/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/S1NTEZ/yandex_translate">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>
+<a name="yandex_translate" class="anchor" href="#yandex_translate"><span class="octicon octicon-link"></span></a>yandex_translate</h2>
+
+<h1></h1>
+
+<p>Php class for using Yandex translate system</p>
+
+<p>This system is like Bing Translator or Google translate, but api is free for use and without strict limits.</p>
+
+<p>The API offers text translation features for over 30 languages. </p>
+
+<p>To begin using this class you need to get your own API key, you can do it just in pair of clicks.</p>
+
+<p>Firstly create a Yandex account - <a href="https://passport.yandex.com/passport">https://passport.yandex.com/passport</a></p>
+
+<p>Finally get your API key - <a href="http://api.yandex.ru/key/form.xml?service=trnsl">http://api.yandex.ru/key/form.xml?service=trnsl</a></p>
+
+<p>Official api description and documentation in English - <a href="http://api.yandex.com/translate/">http://api.yandex.com/translate/</a></p>
+
+<p>in russian - <a href="http://api.yandex.ru/translate/">http://api.yandex.ru/translate/</a></p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>include "YaTranslate.php";
+$key = 'YOUR_API_KEY';
+$tr = new YaTranslate($key);
+
+$result = $tr-&gt;detect('Γεια');                                  //Detects language of the original text
+var_dump($result);
+
+$result = $tr-&gt;translate('Hello, how are you?','en-fr');        //Translate from French to English
+($result);
+
+$result = $tr-&gt;translate('Bonjour, comment allez-vous?','en');  //Detects language of the original text and translates in English
+var_dump($result);
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/S1NTEZ">S1NTEZ</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

@@ -33,8 +33,17 @@ class YaTranslate{
     private $key                = '';
     private $request_url        = 'https://translate.yandex.net/api/v1.5/tr';
     private $request_timeout    = 4;
-    private $request_method     = 'post';
-    private $result_format      = '';
+    /**
+     * Request data method POST or GET
+     * @var string
+     */
+    private $request_method     = 'POST';
+
+    /**
+     * Result format data, could be 'json', 'xml', and maybe in future 'array'
+     * @var string
+     */
+    private $result_format      = 'json';
     private $method             = '';
     
     function __construct($key, $result_format='json'){
@@ -50,15 +59,16 @@ class YaTranslate{
         RETURN $this->key;
     }
     
-    public function set_method($method){
+    private function set_method($method){
         $this->method = $method;
     }
     
-    public function get_method(){
+    private function get_method(){
         RETURN $this->method;
     }
     
     public function set_result_format($result_format){
+        $result_format = strtolower($result_format);
         $this->result_format = $result_format == 'xml' ? '' : $result_format;
     }
     
@@ -79,7 +89,7 @@ class YaTranslate{
     }
     
     public function set_request_method($request_method){
-        $this->request_method = $request_method;
+        $this->request_method = strtoupper($request_method) == 'GET' ? 'GET' : 'POST';
     }
     
     public function get_request_method(){
@@ -87,7 +97,7 @@ class YaTranslate{
     }
     
     function send_request($url,$params=FALSE){
-        if ($params==TRUE AND $this->get_request_method() == 'get') {
+        if ($params==TRUE AND $this->get_request_method() == 'GET') {
             if (is_array($params)) {
                 $params = http_build_query($params);
             }      
@@ -103,10 +113,10 @@ class YaTranslate{
             CURLOPT_TIMEOUT         => $this->request_timeout
         );
         
-        if ($this->get_request_method() == 'post') {
+        if ($this->get_request_method() == 'POST') {
             $defaults += array(
                     CURLOPT_CUSTOMREQUEST   => 'POST',
-                    CURLOPT_POSTFIELDS      => $params,              
+                    CURLOPT_POSTFIELDS      => $params,
                 );
         }
        
@@ -119,6 +129,7 @@ class YaTranslate{
         RETURN $result; 
     }
     
+
     public function prepare_request($method, $params = array()){
         foreach ($params as $key => $param){
             if ($param==FALSE) {

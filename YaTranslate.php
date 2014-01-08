@@ -33,6 +33,7 @@ class YaTranslate{
     private $key                = '';
     private $request_url        = 'https://translate.yandex.net/api/v1.5/tr';
     private $request_timeout    = 4;
+    private $request_method     = 'post';
     private $result_format      = '';
     private $method             = '';
     
@@ -70,23 +71,29 @@ class YaTranslate{
         $this->request_url = $request_url;
     }
     
-    public function get_request_url($params){
-        // Assemble url this way
-        
-        //RETURN  $this->request_url . ($this->get_result_format()==TRUE ? '.'.$this->get_result_format() : '') .
-        //        '/' . $this->get_method() . '?' . http_build_query( array('key' => $this->get_key()) + $params ) ;
-                
-        //Or this way
+    public function get_request_url(){
         $result = $this->request_url;
         $result.= ($this->get_result_format()==TRUE ? '.'.$this->get_result_format() : '');
         $result.= '/' . $this->get_method();
-        $result.= '?' . http_build_query( array('key' => $this->get_key()) + $params );
         RETURN $result;
-        
-        //Which one is better?
     }
     
-    function send_request($url){
+    public function set_request_method($request_method){
+        $this->request_method = $request_method;
+    }
+    
+    public function get_request_method(){
+        RETURN $this->request_method;
+    }
+    
+    function send_request($url,$params=FALSE){
+        if ($params==TRUE AND $this->get_request_method() == 'get') {
+            if (is_array($params)) {
+                $params = http_build_query($params);
+            }      
+            $url .= '?' . $params;
+        }
+
         $defaults = array(
             CURLOPT_URL             => $url,
             CURLOPT_HEADER          => FALSE,
@@ -95,6 +102,13 @@ class YaTranslate{
             CURLOPT_MAXREDIRS       => 3,
             CURLOPT_TIMEOUT         => $this->request_timeout
         );
+        
+        if ($this->get_request_method() == 'post') {
+            $defaults += array(
+                    CURLOPT_CUSTOMREQUEST   => 'POST',
+                    CURLOPT_POSTFIELDS      => $params,              
+                );
+        }
        
         $ch = curl_init();
         curl_setopt_array($ch, $defaults);
@@ -114,8 +128,7 @@ class YaTranslate{
         
         $this->set_method($method);
         
-        $url = $this->get_request_url($params);
-        RETURN $this->send_request($url);
+        RETURN $this->send_request($this->get_request_url(),array('key' => $this->get_key()) + $params);
     }
     
     /**

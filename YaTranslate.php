@@ -6,7 +6,7 @@
      * 
      * To begin using this class you need to get your own API key, you can do it just in pair of clicks.
      * Firstly create a Yandex account - https://passport.yandex.com/passport
-     * Finally get your API key - http://api.yandex.ru/key/form.xml?service=trnsl
+     * Finally get your API key - http://api.yandex.com/key/form.xml?service=trnsl
      * 
      * Official api description and documentation in English - http://api.yandex.com/translate/
      *                                            in russian - http://api.yandex.ru/translate/
@@ -15,7 +15,7 @@
      * 
      * include "YaTranslate.php";
      * $key = 'YOUR_API_KEY';
-     * $tr = new YaTranslate($key);
+     * $tr  = new YaTranslate($key);
      * 
      * $result = $tr->detect('Γεια');                                  //Detects language of the original text
      * var_dump($result);
@@ -184,7 +184,7 @@ class YaTranslate{
      * Description in English   - http://api.yandex.com/translate/doc/dg/reference/detect.xml
      * Description in russin    - http://api.yandex.ru/translate/doc/dg/reference/detect.xml
      **/ 
-    public function detect($text=FALSE,$callback=FALSE){
+    public function detect($text,$callback=FALSE){
         RETURN $this->prepare_request('detect',array('text' => $text, 'callback' => $callback));
     }
     
@@ -224,7 +224,7 @@ class YaTranslate{
      * Description in English   - http://api.yandex.com/translate/doc/dg/reference/translate.xml
      * Description in russin    - http://api.yandex.ru/translate/doc/dg/reference/translate.xml
      **/ 
-    public function translate($text=FALSE, $lang=FALSE, $format=FALSE, $options=FALSE, $callback=FALSE){
+    public function translate($text, $lang=FALSE, $format=FALSE, $options=FALSE, $callback=FALSE){
         RETURN $this->prepare_request('translate',array('text' => $text, 'lang' => $lang, 'format' => $format, 'options' => $options, 'callback' => $callback));
     }
 }

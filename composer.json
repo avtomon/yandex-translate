@@ -1,0 +1,15 @@
+{
+    "name": "beeyev/yandex_translate",
+    "description": "Online service for machine translation for over 40 languages.",
+    "authors": [
+        {
+            "name": "Aleksandr Tebiev",
+            "email": "tebiev@mail.com"
+        }
+    ],
+    "autoload": {
+		"psr-4": {
+			"Beeyev\\YaTranslate\\": "src/"
+		}
+	}
+}

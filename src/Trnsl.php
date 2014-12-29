@@ -1,4 +1,5 @@
-<?php
+<?php namespace Beeyev\YaTranslate;
+
     /**
      * Yandex Translate
      * This system is like Bing Translator or Google translate, but api is free for use and without strict limits.
@@ -12,23 +13,22 @@
      *                                            in russian - http://api.yandex.ru/translate/
      * 
      * Example:
-     * 
-     * include "YaTranslate.php";
+     *
      * $key = 'YOUR_API_KEY';
-     * $tr  = new YaTranslate($key);
+     * $tr  = new \Beeyev\YaTranslate\Trnsl($key);
      * 
      * $result = $tr->detect('Γεια');                                  //Detects language of the original text
      * var_dump($result);
      * 
      * $result = $tr->translate('Hello, how are you?','en-fr');        //Translate from French to English
-     * ($result);
+     * var_dump($result);
      * 
      * $result = $tr->translate('Bonjour, comment allez-vous?','en');  //Detects language of the original text and translates in English
      * var_dump($result);
      * 
-     * @author Tebiev Aleksandr | zzt.tzz@gmail.com
+     * @author Tebiev Aleksandr | tebiev@mail.com
      **/
-class YaTranslate{
+class Trnsl{
     
     private $key                = '';
     private $request_url        = 'https://translate.yandex.net/api/v1.5/tr';
@@ -110,7 +110,8 @@ class YaTranslate{
             CURLOPT_RETURNTRANSFER  => TRUE,
             CURLOPT_FOLLOWLOCATION  => TRUE,
             CURLOPT_MAXREDIRS       => 3,
-            CURLOPT_TIMEOUT         => $this->request_timeout
+            CURLOPT_TIMEOUT         => $this->request_timeout,
+            CURLOPT_SSL_VERIFYPEER  => false
         );
         
         if ($this->get_request_method() == 'POST') {

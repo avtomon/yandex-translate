@@ -1,6 +1,8 @@
 ## yandex_translate
 ================
 
+https://tech.yandex.ru/translate/
+
 Php class for using Yandex translate system
 
 This system is like Bing Translator or Google translate, but api is free for use and without strict limits.
@@ -20,20 +22,15 @@ in russian - http://api.yandex.ru/translate/
 **Example:**
 
 ```
-include "YaTranslate.php";
 $key = 'YOUR_API_KEY';
-$tr = new YaTranslate($key);
+$tr = new \Beeyev\YaTranslate\Trnsl($key);
 
 $result = $tr->detect('Γεια');                                  //Detects language of the original text
 var_dump($result);
 
 $result = $tr->translate('Hello, how are you?','en-fr');        //Translate from French to English
-($result);
+var_dump($result);
 
 $result = $tr->translate('Bonjour, comment allez-vous?','en');  //Detects language of the original text and translates in English
 var_dump($result);
 ```
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/beeyev/yandex_translate/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

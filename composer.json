@@ -1,5 +1,5 @@
 {
-    "name": "beeyev/yandex_translate",
+    "name": "avtomon/yandex_translate",
     "description": "Online service for machine translation for over 40 languages.",
     "authors": [
         {
@@ -8,8 +8,8 @@
         }
     ],
     "autoload": {
-		"psr-4": {
-			"Beeyev\\YaTranslate\\": "src/"
-		}
+	"psr-4": {
+		"Beeyev\\YaTranslate\\": "src/"
 	}
+    }
 }
